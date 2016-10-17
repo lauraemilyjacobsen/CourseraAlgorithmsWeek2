@@ -1,0 +1,33 @@
+Data types to be sorted should implement the Comparable interface
+
+Comparable.CompareTo method compares the object to another object of the same type
+Returns 1 if the current object should come before the second object, -1 if reverse, or 0 if same order.
+
+Our Sorting class takes a collection of Comparables
+
+Helper method for wrapping CompareTo more idiomatically
+
+boolean isLess(Comparable v, Comparable w) {
+    return v.CompareTo(w) < 0;
+}
+
+Helper method to swap two items
+
+void exch(Comparable[] a, int i, int j) {
+    Comparable swap = a[i];
+    a[i] = a[j];
+    a[j] = swap;
+}
+
+Method to test sorting algorithms. Return true if the array is sorted.
+
+boolean isSorted(Comparable[] a) {
+    for (int i = 1; i < a.length; i++) {
+       if (less(a[i], a[i - 1])) return false;
+    }
+    return true;
+}
+
+Knuth shuffle algorithm to put an array of items into random order
+Make i iterations
+For iteration i, generate a random number r between 0 and i, and swap a[i] and a[r]
